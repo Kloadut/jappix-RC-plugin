@@ -1,0 +1,21 @@
+body #jappix_mini {
+    right: 18px;
+}
+
+body #mainscreen {
+    bottom: 40px;
+}
+
+body #addressscreen {
+	bottom: 40px;
+}
+
+span.popup-content {
+display: none;
+position: absolute;
+background:red;
+padding: 6px;
+padding-left: 12px;
+padding-right: 12px;
+color: white;
+}
