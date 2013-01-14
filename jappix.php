@@ -39,10 +39,6 @@ class jappix extends rcube_plugin
             $this,
             'render_page'
         ));
-        //$this->add_hook('session_destroy', array(
-        //    $this,
-        //    'session_destroy'
-        //));
 
     }
 
@@ -55,7 +51,7 @@ class jappix extends rcube_plugin
     function checkJabberID($xid)
     {
         // Case of default authentication
-        if ($xid == "'+getDB(\'jappix-mini-login\', \'xid\')+'")
+        if ($xid == "'+getDB('jappix-mini-login', 'xid')+'")
             $xid = $_SESSION['username'];
 
         // Check if whitelisted
@@ -105,8 +101,8 @@ class jappix extends rcube_plugin
             $xid = $this->jabberId;
             $pwd = $this->jabberPwd;
         } else {
-            $xid = "'+getDB(\'jappix-mini-login\', \'xid\')+'";
-            $pwd = "'+getDB(\'jappix-mini-login\', \'pwd\')+'";
+            $xid = "'+getDB('jappix-mini-login', 'xid')+'";
+            $pwd = "'+getDB('jappix-mini-login', 'pwd')+'";
             $jsInclude = "if (getDB('jappix-mini', 'dom')) {";
             $jsInclude2 = "} else { resetDB(); }";
         }

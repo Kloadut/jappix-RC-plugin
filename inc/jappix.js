@@ -1,5 +1,28 @@
 jQuery(document).ready( function () {
 
+if (window.rcmail) {
+    // Save login and password into JS session database at login (case of default auth)
+    rcmail.addEventListener('init', function (evt) {
+        if (rcmail.task == 'login') {
+            if (location.search == "?_task=logout") {
+                disconnectMini();
+                resetDB();
+            }
+            document.getElementsByName('form')[0].onsubmit = function () {
+                setDB('jappix-mini-login', 'xid', document.getElementById("rcmloginuser").value);
+                setDB('jappix-mini-login', 'pwd', document.getElementById("rcmloginpwd").value);
+                setDB('jappix-mini', 'dom', true);
+            };
+            jQuery('#jappix_mini').remove();
+        }
+    });
+}
+
+// Case insensitive jQuery expression (":Contains")
+jQuery.expr[':'].Contains = function (a, i, m) {
+    return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+};
+
 installPopUp = function () {
 
     // Affect all mailto links of the DOM
@@ -35,7 +58,6 @@ installPopUp = function () {
             .css('margin-right', '5px');
     }
     });
-    //.hover(displayPopUp, hidePopUp);
 }
 
 });
